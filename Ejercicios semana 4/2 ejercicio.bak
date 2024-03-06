@@ -1,0 +1,15 @@
+(define (contieneSubcadena? cadena subcadena)
+  (let ((longitudCadena (string-length cadena))
+        (longitudSubcadena (string-length subcadena)))
+    (let loop ((inicio 0))
+      (if (> (+ inicio longitudSubcadena) longitudCadena)
+          #f
+          (if (string=? (substring cadena inicio (+ inicio longitudSubcadena)) subcadena)
+              #t
+              (loop (+ inicio 1)))))))
+
+(define (filtrarPorSubcadena listaCadenas subcadena)
+  (filter (lambda (cadena) (contieneSubcadena? cadena subcadena)) listaCadenas))
+
+; Ejemplo de uso
+(display (filtrarPorSubcadena '("la casa" "el perro" "pintando la cerca") "el"))
